@@ -1,0 +1,36 @@
+{% extends 'bootstrap/base.html' %} {% block content %}
+<div class="container text-center mx-auto">
+  <div class="jumbotron">
+    <h1 class="display-4 text-left" style="font-size: 50px">
+      Welcome to the Image Caption Generator!
+    </h1>
+    <p class="lead">Upload an image to get your a caption.</p>
+    <hr class="my-4" />
+    <form
+      method="post"
+      enctype="multipart/form-data"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        align-items: center;
+      "
+    >
+      {{ form.csrf_token }} {{ form.image }} {{ form.image.label }} {{
+      form.submit }}
+    </form>
+    {% if caption %}
+    <hr class="my-4" />
+    <h3>Generated Caption:</h3>
+    <p><strong>{{ caption }}</strong></p>
+    <img
+      src="{{ image_path }}"
+      class="img-thumbnail"
+      width="400"
+      height="300"
+    />
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
